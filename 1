@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+int fibo();
+int getdigit(int n);
+int main(void){
+	int number[12]={0},l=12,p,d,div=0,r=0;
+	for(int i=0;i<l;i++){
+		number[i]=rand()%10;
+	}
+	for(int i=0;i<l;i++){
+                printf("%d",number[i]);
+        }
+	p=fibo();
+	printf("\nPeriod=%d",p);
+	d=getdigit(p);
+	printf("\nDegit=%d",d);
+	for(int i=0;i<d-1;i++){
+		div=div*10+number[i];
+	}
+	printf("\nNumber=%d",div);
+	for(int i=d-1;i<l-(d-1);i++){
+		div=div*10+number[i];
+		div=div+r;
+		r=div%p;
+		div=div/p;
+		printf("Iteration %d div=%d, r=%d",i-d,div,r);
+	}
+	printf("\nModulas By %d is %d",p,r);
+
+
+	return 0;
+}
+int fibo(){
+	int a=0,b=1,count=0;
+	while(1){
+		int c=(a+b)%100000;
+		a=b;
+		b=c;
+		count++;
+		if(a==0&&b==1){break;}
+	}
+	return ((count>2)?count:0);
+}
+int getdigit(int n){
+	int rem=0,count=0;
+	while(n>0){
+		count++;
+		n=n/10;
+	}
+	return count;
+}
+
+
+

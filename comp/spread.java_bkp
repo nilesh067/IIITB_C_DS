@@ -1,0 +1,40 @@
+import java.util.LinkedHashMap;
+import java.util.Arrays;
+class spread{
+	public static void main(String ar[]){
+	LinkedHashMap<Integer,Integer> lhm = new LinkedHashMap<Integer,Integer>();
+	java.util.Scanner sc=new java.util.Scanner(System.in);
+	int t=Integer.parseInt(sc.nextLine());
+	for(int i=0;i<t;i++){
+		int l=Integer.parseInt(sc.nextLine());
+		String str=sc.nextLine();
+		String strArr[]=str.split(" ");
+		int j=0;
+		int intArr[]=new int[l];
+		for(String s:strArr){
+			intArr[j]=Integer.parseInt(s);
+			j++;
+		}
+		//System.out.println("Strign Arr :: "+Arrays.toString(strArr));
+		//System.out.println("Int Arr :: "+Arrays.toString(intArr));
+		//int max_index=l-1;
+		int day=0;
+		int know_index=1;
+
+		while((l-know_index)>0){
+			day++;
+			//System.out.println("Day  :: "+day);
+			int limit=know_index;
+			for(int k=0;k<limit;k++){
+			//System.out.println("Adding K :: "+k);
+			know_index=know_index+intArr[k];
+			}
+		
+		
+		}
+		System.out.println(day);
+	}
+	}
+
+
+}

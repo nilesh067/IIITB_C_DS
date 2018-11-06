@@ -1,11 +1,21 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 int * bubblesort(int *arr,int i,int j,int n);
 int main(){
-	int arr[10]={10,2,5,1,6,9,7,3,4,8},n=10;
+	int arr[1000000]={0},n=1000000;
+	for(int i=0;i<1000000;i++){
+		arr[i]=rand()%1000;
+	}
+	clock_t start,end;
+	start=clock();
 	int *resultarr=bubblesort(arr,0,9,n);
+	end=clock();
+	double timetaken=((double)end-start)/CLOCKS_PER_SEC;
 	for(int i=0;i<n;i++){
 		printf("%d\t",resultarr[i]);
 	}
+	printf("%lf\t",timetaken);
 	return 0;
 }
 int * bubblesort(int *arr,int i,int j,int n){
