@@ -1,0 +1,60 @@
+import java.util.*;
+class Dijkstras{
+	private int v;
+	private LinkedList<Integer[]> adj[];
+	public Dijkstras(int v){
+	this.v=v;
+	adj=new LinkedList[v];
+	for(int i=0;i<v;i++){
+		adj[i]=new LinkedList<Integer[]>();
+	}
+	}
+	void addEdge(int u,int v,int w){
+		Integer[] edge=new Integer[2];
+		edge[0]=v;edge[1]=w;
+		adj[u].add(edge);
+	}
+	void getDijkstras(int s){
+	int path[]=new int[v];
+	Arrays.fill(path,Integer.MAX_VALUE);
+	int pie[]=new int[v];
+	int col[]=new int[v];
+	minHeap priority =new minHeap();
+	PriorityQueue<Integer> pq=new PriorityQueue<>(priority);
+	pq.add(s);
+	pie[s]=s;
+	path[s]=0;
+	col[s]=1;
+	while(!pq.isEmpty()){
+		int x=pq.poll();
+		col[x]=2;
+		for(Integer[] arr:adj[x]){
+			if(col[arr[0].intValue()]==0){
+				path[arr[0].intValue()]=path[x]+arr[1];
+				col[arr[0].intValue()]=1;
+				pie[arr[0].intValue()]=x;
+			}else if(col[arr[0].intValue()]==1){
+				if(path[arr[0].intValue()]>(path[x]+arr[1])){
+					path[arr[0].intValue()]=path[x]+arr[1];
+					pie[arr[0].intValue()]=x;
+				}
+			}
+		}
+	}
+	System.out.println("Path Arr :: "+Arrays.toString(path));
+	System.out.println("Col Arr :: "+Arrays.toString(col));
+}
+public static void main(String arr[]){
+	Dijkstras d=new Dijkstras(3);
+	d.addEdge(0,1,4);
+	d.addEdge(0,2,6);
+	d.addEdge(1,2,3);
+	d.getDijkstras(0);
+}
+}
+class minHeap implements Comparator<Integer>{
+	public int compare(Integer a,Integer b){
+		if(a.intValue()>=b.intValue())return 1;
+		else return -1;
+	}
+}

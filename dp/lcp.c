@@ -7,11 +7,11 @@ void createTable(int l1,char *arr,int table[l1][l1]){
 		table[x][x]=1;
 	}
 	for(int k=1;k<l1;k++){
-		for(int i=0;i<=l1-k;i++){
+		for(int i=0;i<l1-k;i++){
 			int j=i+k;
 		printf("arr[%d][%d]",i,j);
 			if(arr[i]==arr[j]){
-				table[i][j]=2+table[i+1][i-1];
+				table[i][j]=2+table[i+1][j-1];
 			}else{
 				table[i][j]=MAX(table[i][j-1],table[i+1][j]);		
 			}
@@ -48,15 +48,14 @@ int MAX(int a,int b){
 
 }*/
 int main(){
-	int l1=7,l2=7;
 	/*printf("Enter Length of First String :: \n");
 	scanf("%d",&l1);
 	printf("Enter Length of Second String :: \n");
 	scanf("%d",&l2);*/
 	//printf("\n");
-	char arr[]={'M','A','D','A','M'};
-//	char arr[]={'A','B','C','A','B','B','A'};
-	l1=sizeof(arr)/sizeof(arr[0]);
+//	char arr[]={'M','A','D','A','M'};
+	char arr[]={'A','G','B','D','B','A'};
+	int l1=sizeof(arr)/sizeof(arr[0]);
 	for(int i=0;i<l1;i++){
 	printf("arr[%d]=%c\n",i,arr[i]);
 	}
